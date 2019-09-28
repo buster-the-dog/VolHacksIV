@@ -1,6 +1,6 @@
 import sys, math, json
 import RPi.GPIO as GPIO
-import timej
+import time
 import tempHumidity
 
 def main():
