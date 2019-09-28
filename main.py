@@ -5,7 +5,7 @@ import time
 def main():
   ledPort = 2
   GPIO.setmode(GPIO.BCM)
-  GPIO.setup(bluePin, GPIO.OUT)
+  GPIO.setup(ledPort, GPIO.OUT)
   GPIO.output(ledPort, GPIO.HIGH)
   return "Successfully Executed"
 
