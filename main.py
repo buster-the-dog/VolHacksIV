@@ -4,7 +4,7 @@ import time
 import tempHumidity
 
 def main():
-  return tempHumidityData
+  return tempHumidity.tempHumidityData
 
 if __name__ == "__main__":
   print main()
