@@ -18,6 +18,7 @@ def main():
       humidity, temperature = Adafruit_DHT.read_retry(11, 4)
       #turn heater/fan on
       e = (targetTemp - temperature) / targetTemp
+      print e, temperature
       o.ChangeDutyCycle((e * 50) + 50)
   except KeyboardInterrupt:
     GPIO.output(heaterPort, GPIO.LOW)
