@@ -26,7 +26,7 @@ def main():
           #drying is done here, return
           return dryingTime
     return humidity, temperature
-  Except KeyboardInterrupt:
+  except KeyboardInterrupt:
     GPIO.output(heaterPort, GPIO.LOW)
     GPIO.cleanup()
     return "exiting cleanly"
