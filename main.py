@@ -11,7 +11,7 @@ def main():
   GPIO.setwarnings(False)
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(heaterPort, GPIO.OUT)
-  o = GPIO.PWM(heaterPort, .5)
+  o = GPIO.PWM(heaterPort, 10)
   o.start(100)
   
   if len(sys.argv) < 2:
