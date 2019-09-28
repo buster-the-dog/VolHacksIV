@@ -7,14 +7,15 @@ def main():
   targetTemp = 50
   targetHumid = 30
   dryingTime = -1
+  heaterPort = 2
+  GPIO.setmode(GPIO.BCM)
+  GPIO.setup(heaterPort, GPIO.OUT)
+  GPIO.output(heaterPort, GPIO.HIGH)
+  
   try:
     while True:
       humidity, temperature = Adafruit_DHT.read_retry(11, 4)
       #turn heater/fan on
-      heaterPort = 2
-      GPIO.setmode(GPIO.BCM)
-      GPIO.setup(heaterPort, GPIO.OUT)
-      GPIO.output(heaterPort, GPIO.HIGH)
       print humidity, ' ', temperature
       if temperature >= targetTemp:
         #turn heater off
