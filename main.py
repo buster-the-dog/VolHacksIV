@@ -7,7 +7,7 @@ def main():
   targetTemp = 50
   targetHumid = 30
   dryingTime = -1
-  while (true)
+  while true
     humidity, temperature = Adafruit_DHT.read_retry(11, 4)
     #turn heater/fan on
     heaterPort = 2
