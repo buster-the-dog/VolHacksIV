@@ -35,7 +35,7 @@ def main():
       if ((targetTemp - 5) < temperature) and dryingTimeStart == -1:
         dryingTimeStart = time.clock();
       
-      if (dryingTimeStart + int(sys.argv[2])) >= time.clock():
+      if ((dryingTimeStart + int(sys.argv[2])) <= time.clock()) and dryingTimeStart != -1:
         requests.post("https://maker.ifttt.com/trigger/filament_dry/with/key/djmRT5cNql9CJhtenF9aRE")
         return "filament done drying"
       
