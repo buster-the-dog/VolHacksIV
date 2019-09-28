@@ -29,7 +29,6 @@ def main():
     return humidity, temperature
   except KeyboardInterrupt:
     GPIO.output(heaterPort, GPIO.LOW)
-    GPIO.cleanup()
     return "exiting cleanly"
 
 if __name__ == "__main__":
