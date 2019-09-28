@@ -21,7 +21,6 @@ def main():
       o.ChangeDutyCycle(e * 100)
   except KeyboardInterrupt:
     GPIO.output(heaterPort, GPIO.LOW)
-    GPIO.cleanup()
     return "exiting cleanly"
 
 if __name__ == "__main__":
