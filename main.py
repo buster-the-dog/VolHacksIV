@@ -19,6 +19,7 @@ def main():
       #turn heater/fan on
       e = (targetTemp - temperature) / targetTemp
       print e, temperature
+      print input()
       if e < 0:
         e = 0
       o.ChangeDutyCycle(e * 100)
