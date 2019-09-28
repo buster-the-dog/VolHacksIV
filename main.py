@@ -16,12 +16,13 @@ def main():
     return "usage: python main.py [targetTemp]"
   
   targetTemp = int(sys.argv[1])
+  humidity, initTemp = Adafruit_DHT.read_retry(11, 4)
   
   try:
     while True:
       humidity, temperature = Adafruit_DHT.read_retry(11, 4)
       #turn heater/fan on
-      e = (targetTemp - temperature) / targetTemp
+      e = (targetTemp - temperature) / (targetTemp - initTemp)
       print e, temperature
       if e < 0:
         e = 0
