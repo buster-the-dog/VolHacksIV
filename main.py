@@ -1,7 +1,7 @@
 import sys, math
 
 def main():
-  return "hello, world, test"
+  return "hello, world"
 
 if __name__ == "__main__":
   print main()
