@@ -37,6 +37,7 @@ def main():
       
       if ((dryingTimeStart + int(sys.argv[2])) <= time.time()) and dryingTimeStart != -1:
         requests.post("https://maker.ifttt.com/trigger/filament_dry/with/key/djmRT5cNql9CJhtenF9aRE")
+        GPIO.output(heaterPort, GPIO.LOW)
         return "filament done drying"
       
   except KeyboardInterrupt:
