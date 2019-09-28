@@ -19,7 +19,9 @@ def main():
       #turn heater/fan on
       e = (targetTemp - temperature) / targetTemp
       print e, temperature
-      o.ChangeDutyCycle((e * 50) + 50)
+      if e < 0:
+        e = 0
+      o.ChangeDutyCycle(e * 100)
   except KeyboardInterrupt:
     GPIO.output(heaterPort, GPIO.LOW)
     return "exiting cleanly"
