@@ -1,10 +1,10 @@
 import sys, math, json
 import RPi.GPIO as GPIO
 import time
-import tempHumidity
+from tempHumidity import tempHumidityData
 
 def main():
-  return tempHumidity.tempHumidityData
+  return tempHumidityData
 
 if __name__ == "__main__":
   print main()
