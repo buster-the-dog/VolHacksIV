@@ -2,10 +2,11 @@ import sys, math, json
 import RPi.GPIO as GPIO
 import time
 import Adafruit_DHT
+import requests
 
 def main():
   targetHumid = 30
-  dryingTime = -1
+  dryingTimeStart = -1
   heaterPort = 2
   GPIO.setwarnings(False)
   GPIO.setmode(GPIO.BCM)
@@ -13,8 +14,8 @@ def main():
   o = GPIO.PWM(heaterPort, 45)
   o.start(100)
   
-  if len(sys.argv) < 1:
-    return "usage: python main.py [targetTemp]"
+  if len(sys.argv) < 2:
+    return "usage: python main.py [targetTemp] [heatingTime]"
   
   targetTemp = int(sys.argv[1])
   humidity, initTemp = Adafruit_DHT.read_retry(11, 4)
@@ -30,6 +31,14 @@ def main():
       if e > 100:
         e = 100
       o.ChangeDutyCycle(e * 100)
+      
+      if ((targetTemp - 5) < temperature) and dryingTimeStart == -1:
+        dryingTimeStart = time.clock();
+      
+      if dryingTimeStart >= heatingTime:
+        requests.post("https://maker.ifttt.com/trigger/filament_dry/with/key/djmRT5cNql9CJhtenF9aRE")
+        return "filament done drying"
+      
   except KeyboardInterrupt:
     GPIO.output(heaterPort, GPIO.LOW)
     return "exiting cleanly"
