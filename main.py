@@ -25,7 +25,7 @@ def main():
       humidity, temperature = Adafruit_DHT.read_retry(11, 4)
       #turn heater/fan on
       e = (targetTemp - temperature) / (targetTemp - initTemp)
-      print e, temperature, dryingTimeStart, time.process_time(), targetTemp
+      print e, temperature, dryingTimeStart, time.time(), targetTemp
       if e < 0:
         e = 0
       if e > 1:
@@ -33,9 +33,9 @@ def main():
       o.ChangeDutyCycle(e * 100)
       
       if ((targetTemp - 5) < temperature) and dryingTimeStart == -1:
-        dryingTimeStart = time.process_time();
+        dryingTimeStart = time.time();
       
-      if ((dryingTimeStart + int(sys.argv[2])) <= time.process_time()) and dryingTimeStart != -1:
+      if ((dryingTimeStart + int(sys.argv[2])) <= time.time()) and dryingTimeStart != -1:
         requests.post("https://maker.ifttt.com/trigger/filament_dry/with/key/djmRT5cNql9CJhtenF9aRE")
         return "filament done drying"
       
