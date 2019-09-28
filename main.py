@@ -10,7 +10,7 @@ def main():
   heaterPort = 2
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(heaterPort, GPIO.OUT)
-  o = GPIO.PWM(heaterPort, 30)
+  o = GPIO.PWM(heaterPort, 45)
   o.start(100)
   
   try:
