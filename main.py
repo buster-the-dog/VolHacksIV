@@ -25,7 +25,7 @@ def main():
       humidity, temperature = Adafruit_DHT.read_retry(11, 4)
       #turn heater/fan on
       e = (targetTemp - temperature) / (targetTemp - initTemp)
-      print e, temperature, dryingTimeStart, time.time(), targetTemp
+      print e, temperature, targetTemp
       if e < 0:
         e = 0
       if e > 1:
