@@ -21,7 +21,7 @@ def main():
   try:
     while True:
       humidity, temperature = Adafruit_DHT.read_retry(11, 4)
-      temperature, targetTemp, humidity
+      print temperature, targetTemp, humidity
       if temperature >= targetTemp:
         GPIO.output(heaterPort, GPIO.LOW)
       else:
