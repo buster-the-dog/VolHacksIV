@@ -10,7 +10,7 @@ def main():
   heaterPort = 2
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(heaterPort, GPIO.OUT)
-  GPIO.output(heaterPort, GPIO.HIGH)
+  GPIO.output(heaterPort, GPIO.LOW)
   
   try:
     while True:
