@@ -7,6 +7,7 @@ def main():
   targetHumid = 30
   dryingTime = -1
   heaterPort = 2
+  GPIO.setwarnings(False)
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(heaterPort, GPIO.OUT)
   o = GPIO.PWM(heaterPort, 45)
@@ -26,6 +27,8 @@ def main():
       print e, temperature
       if e < 0:
         e = 0
+      if e > 100:
+        e = 100
       o.ChangeDutyCycle(e * 100)
   except KeyboardInterrupt:
     GPIO.output(heaterPort, GPIO.LOW)
