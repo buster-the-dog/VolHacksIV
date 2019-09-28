@@ -7,6 +7,8 @@ def main():
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(ledPort, GPIO.OUT)
   GPIO.output(ledPort, GPIO.HIGH)
+  time.sleep(5)
+  GPIO.output(ledPort, GPIO.LOW)
   return "Successfully Executed"
 
 if __name__ == "__main__":
