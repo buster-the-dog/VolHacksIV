@@ -28,8 +28,8 @@ def main():
       print e, temperature
       if e < 0:
         e = 0
-      if e > 100:
-        e = 100
+      if e > 1:
+        e = 1
       o.ChangeDutyCycle(e * 100)
       
       if ((targetTemp - 5) < temperature) and dryingTimeStart == -1:
