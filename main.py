@@ -4,7 +4,6 @@ import time
 import Adafruit_DHT
 
 def main():
-  targetTemp = 50
   targetHumid = 30
   dryingTime = -1
   heaterPort = 2
@@ -13,10 +12,10 @@ def main():
   o = GPIO.PWM(heaterPort, 45)
   o.start(100)
   
-  print sys.argv[1]
-  
   if len(sys.argv) < 1:
     return "usage: python main.py [targetTemp]"
+  
+  targetTemp = int(sys.argv[1])
   
   try:
     while True:
