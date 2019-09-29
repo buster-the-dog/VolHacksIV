@@ -9,7 +9,7 @@ def main():
   targetHumid = 30
   dryingTimeStart = -1
   heaterPort = 2
-  GPIO.setwarnings(False)
+  #GPIO.setwarnings(False)
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(heaterPort, GPIO.OUT)
   o = GPIO.PWM(heaterPort, 45)
