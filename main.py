@@ -14,7 +14,7 @@ def main():
   GPIO.setup(heaterPort, GPIO.OUT)
   o = GPIO.PWM(heaterPort, 45)
   o.start(100) 
-  s = serial.Serial('/dev/tty1', 9600, timeout = 1)
+  #s = serial.Serial('/dev/tty1', 9600, timeout = 1)
   
   if len(sys.argv) < 2:
     return "usage: python main.py [targetTemp] [heatingTime]"
@@ -29,7 +29,8 @@ def main():
       #turn heater/fan on
       e = ((targetTemp - temperature) / (targetTemp - initTemp)) * 10
       print e, temperature, targetTemp, humidity
-      print s.readline()
+      
+      #print s.readline()
       if e < 0:
         e = 0
       if e > 1:
