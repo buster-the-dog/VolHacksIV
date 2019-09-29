@@ -11,6 +11,8 @@ def main():
   GPIO.setwarnings(False)
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(heaterPort, GPIO.OUT)
+  o = GPIO.PWM(heaterPort, 10)
+  o.start(100) 
   
   if len(sys.argv) < 2:
     return "usage: python main.py [targetTemp] [heatingTime]"
@@ -21,11 +23,14 @@ def main():
   try:
     while True:
       humidity, temperature = Adafruit_DHT.read_retry(11, 4)
-      print temperature, targetTemp, humidity
-      if temperature >= targetTemp:
-        GPIO.output(heaterPort, GPIO.LOW)
-      else:
-        GPIO.output(heaterPort, GPIO.HIGH)
+      #turn heater/fan on
+      e = ((targetTemp - temperature) / (targetTemp - initTemp)) * 5
+      print e, temperature, targetTemp, humidity
+      if e < 0:
+        e = 0
+      if e > 1:
+        e = 1
+      o.ChangeDutyCycle(e * 100)
       
       if ((targetTemp - 5) < temperature) and dryingTimeStart == -1:
         dryingTimeStart = time.time();
