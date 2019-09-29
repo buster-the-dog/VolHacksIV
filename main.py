@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import time
 import Adafruit_DHT
 import requests
+import serial
 
 def main():
   targetHumid = 30
@@ -13,6 +14,7 @@ def main():
   GPIO.setup(heaterPort, GPIO.OUT)
   o = GPIO.PWM(heaterPort, 45)
   o.start(100) 
+  s = serial.Serial('com4', 9600, timeout = 1)
   
   if len(sys.argv) < 2:
     return "usage: python main.py [targetTemp] [heatingTime]"
@@ -26,7 +28,7 @@ def main():
       humidity, temperature = Adafruit_DHT.read_retry(11, 4)
       #turn heater/fan on
       e = ((targetTemp - temperature) / (targetTemp - initTemp)) * 10
-      print e, temperature, targetTemp, humidity
+      print e, temperature, targetTemp, humidity, s.readline()
       if e < 0:
         e = 0
       if e > 1:
